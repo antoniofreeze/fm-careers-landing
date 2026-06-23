@@ -163,7 +163,13 @@
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push(Object.assign({ event: 'fm_' + event }, params));
     } catch (e) {}
-    // LinkedIn conversions: window.lintrk && window.lintrk('track', { conversion_id: XXXX });
+    // LinkedIn: fa scattare la conversione se è stato configurato un conversion_id per l'evento
+    try {
+      var lk = (window.FM_TRACKING && window.FM_TRACKING.linkedinConversions) || {};
+      if (typeof window.lintrk === 'function' && lk[event]) {
+        window.lintrk('track', { conversion_id: lk[event] });
+      }
+    } catch (e) {}
   }
 
   // CTA tracking (header / hero / sticky ecc.)

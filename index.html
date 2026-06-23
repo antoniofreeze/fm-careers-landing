@@ -34,25 +34,66 @@
   <link rel="stylesheet" href="assets/css/styles.css" />
 
   <!-- =================================================================
-       TRACKING READY — inserire gli ID quando disponibili.
-       I segnali di conversione (invio form) vengono già emessi da main.js
-       verso fbq / ttq / dataLayer se le librerie sono presenti.
+       TRACKING — pixel di conversione (Meta / TikTok / LinkedIn).
+       Compila gli ID qui sotto: ogni pixel si attiva SOLO se il suo ID
+       è valorizzato. Gli eventi (Lead, CompleteRegistration) vengono già
+       emessi da main.js verso fbq / ttq / lintrk / dataLayer.
        ================================================================= -->
-  <!-- Meta Pixel
   <script>
-    !function(f,b,e,v,n,t,s){...}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', 'META_PIXEL_ID'); fbq('track', 'PageView');
+    window.FM_TRACKING = {
+      metaPixelId:       '1487221225697836', // ✅ Meta (FM PIXEL)
+      tiktokPixelId:     '',                 // ⬅️ incolla l'ID TikTok (es. C9XXXXXXXXXXXXXXXXXX)
+      linkedinPartnerId: '',                 // ⬅️ incolla il Partner ID LinkedIn (numerico)
+      // (opzionale) ID conversione LinkedIn definiti in Campaign Manager:
+      linkedinConversions: { Lead: '', CompleteRegistration: '' }
+    };
   </script>
-  -->
-  <!-- TikTok Pixel
+
+  <!-- Meta Pixel -->
   <script>
-    !function(w,d,t){w.TiktokAnalyticsObject=t;...}(window,document,'ttq');
-    ttq.load('TIKTOK_PIXEL_ID'); ttq.page();
+    (function () {
+      if (!window.FM_TRACKING.metaPixelId) return;
+      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+      n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+      document,'script','https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', window.FM_TRACKING.metaPixelId);
+      fbq('track', 'PageView');
+    })();
   </script>
-  -->
-  <!-- LinkedIn Insight Tag
-  <script type="text/javascript">_linkedin_partner_id="LINKEDIN_PARTNER_ID";...</script>
-  -->
+  <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1487221225697836&ev=PageView&noscript=1" alt="" /></noscript>
+
+  <!-- TikTok Pixel -->
+  <script>
+    (function () {
+      if (!window.FM_TRACKING.tiktokPixelId) return;
+      !function (w, d, t) { w.TiktokAnalyticsObject = t; var ttq = w[t] = w[t] || [];
+      ttq.methods = ["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"];
+      ttq.setAndDefer = function (t, e) { t[e] = function () { t.push([e].concat(Array.prototype.slice.call(arguments, 0))) } };
+      for (var i = 0; i < ttq.methods.length; i++) ttq.setAndDefer(ttq, ttq.methods[i]);
+      ttq.instance = function (t) { for (var e = ttq._i[t] || [], n = 0; n < ttq.methods.length; n++) ttq.setAndDefer(e, ttq.methods[n]); return e };
+      ttq.load = function (e, n) { var r = "https://analytics.tiktok.com/i18n/pixel/events.js", o = n && n.partner; ttq._i = ttq._i || {}; ttq._i[e] = []; ttq._i[e]._u = r; ttq._t = ttq._t || {}; ttq._t[e] = +new Date; ttq._o = ttq._o || {}; ttq._o[e] = n || {};
+      var s = d.createElement("script"); s.type = "text/javascript"; s.async = !0; s.src = r + "?sdkid=" + e + "&lib=" + t;
+      var a = d.getElementsByTagName("script")[0]; a.parentNode.insertBefore(s, a) };
+      ttq.load(w.FM_TRACKING.tiktokPixelId); ttq.page() }(window, document, 'ttq');
+    })();
+  </script>
+
+  <!-- LinkedIn Insight Tag -->
+  <script>
+    (function () {
+      if (!window.FM_TRACKING.linkedinPartnerId) return;
+      window._linkedin_partner_id = window.FM_TRACKING.linkedinPartnerId;
+      window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+      window._linkedin_data_partner_ids.push(window._linkedin_partner_id);
+      (function (l) { if (!l) { window.lintrk = function (a, b) { window.lintrk.q.push([a, b]) }; window.lintrk.q = [] }
+      var s = document.getElementsByTagName("script")[0], b = document.createElement("script");
+      b.type = "text/javascript"; b.async = !0; b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
+      s.parentNode.insertBefore(b, s); })(window.lintrk);
+    })();
+  </script>
 
   <!-- JSON-LD: Organization -->
   <script type="application/ld+json">
