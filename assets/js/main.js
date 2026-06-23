@@ -79,6 +79,27 @@
     });
   });
 
+  /* ---------- Deep-link da campagne ads: ?pos=... &utm_* ----------
+     Esempio: /?pos=Tecnico%20Installatore#candidati
+     Preseleziona la posizione nel form e traccia la provenienza. */
+  (function applyDeepLink() {
+    if (!posSelect) return;
+    var params = new URLSearchParams(window.location.search);
+    var pos = params.get('pos');
+    if (pos) {
+      var match = $$('option', posSelect).find(function (o) {
+        return o.value === pos || o.textContent.trim() === pos;
+      });
+      if (match) posSelect.value = match.value || match.textContent.trim();
+      if (sourceField) {
+        var src = 'ad:' + pos;
+        var utm = params.get('utm_source') || params.get('utm_campaign');
+        if (utm) src += '|' + utm;
+        sourceField.value = src;
+      }
+    }
+  })();
+
   /* ---------- Validazione + submit form ---------- */
   const form = $('#applyForm');
   const feedback = $('#formFeedback');
