@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Candidatura inviata | FM Service Group</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#0f2347" />
+  <link rel="icon" type="image/png" href="assets/img/fm-logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+
+  <!-- ===== TRACKING: pagina di conversione (candidatura inviata) ===== -->
+  <script>
+    window.FM_TRACKING = {
+      metaPixelId:       '1487221225697836',
+      tiktokPixelId:     '',
+      linkedinPartnerId: '10424633'
+    };
+  </script>
+  <!-- Meta Pixel -->
+  <script>
+    (function () {
+      if (!window.FM_TRACKING.metaPixelId) return;
+      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+      n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+      document,'script','https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', window.FM_TRACKING.metaPixelId);
+      fbq('track', 'PageView');
+      fbq('track', 'CompleteRegistration'); // conversione: candidatura inviata
+    })();
+  </script>
+  <!-- LinkedIn Insight Tag -->
+  <script>
+    (function () {
+      if (!window.FM_TRACKING.linkedinPartnerId) return;
+      window._linkedin_partner_id = window.FM_TRACKING.linkedinPartnerId;
+      window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+      window._linkedin_data_partner_ids.push(window._linkedin_partner_id);
+      (function (l) { if (!l) { window.lintrk = function (a, b) { window.lintrk.q.push([a, b]) }; window.lintrk.q = [] }
+      var s = document.getElementsByTagName("script")[0], b = document.createElement("script");
+      b.type = "text/javascript"; b.async = !0; b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
+      s.parentNode.insertBefore(b, s); })(window.lintrk);
+    })();
+  </script>
+
+  <style>
+    .ty-wrap { min-height: 100vh; display: grid; place-items: center; padding: 40px 20px;
+      background: linear-gradient(160deg, var(--navy-900), var(--navy-700)); }
+    .ty-card { background: #fff; border-radius: var(--radius); box-shadow: var(--shadow-lg);
+      max-width: 540px; width: 100%; padding: 48px 36px; text-align: center; }
+    .ty-logo { height: 46px; margin: 0 auto 26px; }
+    .ty-check { width: 84px; height: 84px; margin: 0 auto 24px; border-radius: 50%;
+      display: grid; place-items: center; color: #fff;
+      background: linear-gradient(135deg, #1d8a4e, #15663a); box-shadow: 0 12px 28px rgba(29,138,78,.35); }
+    .ty-check svg { width: 42px; height: 42px; }
+    .ty-card h1 { font-size: 1.7rem; color: var(--navy-900); margin: 0 0 14px; }
+    .ty-card p { color: var(--muted); margin: 0 0 10px; font-size: 1.05rem; }
+    .ty-card .btn { margin-top: 26px; }
+  </style>
+</head>
+<body>
+  <main class="ty-wrap">
+    <div class="ty-card">
+      <img src="assets/img/fm-logo.png" alt="FM Service Group" class="ty-logo" />
+      <div class="ty-check" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+      </div>
+      <h1>Candidatura inviata! 🎉</h1>
+      <p>Grazie per esserti candidato a <strong>FM Service Group</strong>.</p>
+      <p>Abbiamo ricevuto i tuoi dati e il tuo curriculum. Se il tuo profilo sarà in linea con le ricerche attive, il nostro team ti ricontatterà.</p>
+      <a href="/" class="btn btn-primary btn-lg">Torna al sito</a>
+    </div>
+  </main>
+</body>
+</html>

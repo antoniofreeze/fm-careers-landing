@@ -348,14 +348,16 @@
             (CV in allegato + nessun servizio esterno). Vedi README.
         -->
         <form class="apply-form reveal" id="applyForm" method="POST"
-              action="https://formsubmit.co/ajax/info@fmservicegroup.it"
+              action="https://formsubmit.co/info@fmservicegroup.it"
               enctype="multipart/form-data" novalidate>
           <!-- campo nascosto popolato dalle card "Posizioni aperte" / tracking -->
           <input type="hidden" name="source" id="formSource" value="landing-recruiting" />
-          <!-- opzioni FormSubmit (ignorate da submit.php) -->
+          <!-- opzioni FormSubmit (endpoint standard: inoltra anche il CV in allegato) -->
           <input type="hidden" name="_subject" value="Nuova candidatura — FM Service Group" />
           <input type="hidden" name="_template" value="table" />
           <input type="hidden" name="_captcha" value="false" />
+          <!-- pagina di ringraziamento dopo l'invio (anche per tracciare la conversione) -->
+          <input type="hidden" name="_next" value="https://fmservicegroup-recruiting.it/grazie.html" />
           <!-- honeypot anti-spam: nascosto agli utenti, compilato solo dai bot -->
           <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" />
 

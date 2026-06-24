@@ -105,13 +105,13 @@
   const feedback = $('#formFeedback');
 
   if (form) {
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
+    form.addEventListener('submit', (e) => {
       feedback.className = 'form-feedback';
       feedback.textContent = '';
 
-      // validazione nativa
+      // validazione nativa: se non valido, blocca l'invio e segnala
       if (!form.checkValidity()) {
+        e.preventDefault();
         const firstInvalid = form.querySelector(':invalid');
         if (firstInvalid) {
           firstInvalid.focus();
@@ -122,53 +122,23 @@
         return;
       }
 
+      // Valido → emette la conversione, poi lascia partire l'INVIO NATIVO del form:
+      // multipart con il CV in allegato verso FormSubmit, che reindirizza a grazie.html.
+      // (Su hosting PHP/WordPress con action=submit.php il flusso nativo resta identico.)
+      track('CompleteRegistration', {
+        content_name: (posSelect && posSelect.value) || 'Candidatura',
+        source: 'apply_form'
+      });
+
       const submitBtn = form.querySelector('[type="submit"]');
-      const originalText = submitBtn.textContent;
       submitBtn.disabled = true;
       submitBtn.textContent = 'Invio in corso…';
-
-      try {
-        // ---------------------------------------------------------------
-        // INVIO → submit.php invia la candidatura (CV in allegato) a
-        // info@fmservicegroup.it e risponde JSON { ok: true }.
-        // FormData include automaticamente tutti i campi + il file CV.
-        // (Per FormSubmit/Web3Forms l'attributo action del <form> basta
-        //  cambiarlo: il flusso fetch qui sotto resta valido.)
-        // ---------------------------------------------------------------
-        const data = new FormData(form);
-        // FormSubmit (hosting statico) non inoltra allegati via endpoint AJAX:
-        // rimuoviamo il CV per evitare errori. Su submit.php il file resta incluso.
-        if (/formsubmit\.co/.test(form.action) && data.has('cv')) data.delete('cv');
-        const res = await fetch(form.action, {
-          method: 'POST',
-          body: data,
-          headers: { 'Accept': 'application/json' }
-        });
-
-        let ok = res.ok;
-        // FormSubmit/Web3Forms e submit.php rispondono JSON: validiamo se possibile
-        try {
-          const json = await res.clone().json();
-          ok = ok && (json.ok === true || json.success === true || json.success === 'true');
-        } catch (_) { /* risposta non-JSON: ci basiamo su res.ok */ }
-        if (!ok) throw new Error('Invio non riuscito');
-
-        // Conversione tracking (Meta / TikTok / LinkedIn / GTM)
-        track('CompleteRegistration', {
-          content_name: (posSelect && posSelect.value) || 'Candidatura',
-          source: 'apply_form'
-        });
-
-        feedback.classList.add('success');
-        feedback.textContent = '✅ Candidatura inviata! Ti contatteremo se il profilo è in linea con le ricerche attive.';
-        form.reset();
-      } catch (err) {
-        feedback.classList.add('error');
-        feedback.textContent = '⚠️ Si è verificato un errore. Riprova o scrivici a info@fmservicegroup.it';
-      } finally {
+      // NON chiamiamo preventDefault: il browser invia il form (con il file) e naviga
+      // verso FormSubmit → grazie.html. (Riabilita il pulsante se la navigazione non parte.)
+      window.setTimeout(function () {
         submitBtn.disabled = false;
-        submitBtn.textContent = originalText;
-      }
+        submitBtn.textContent = 'Invia candidatura';
+      }, 6000);
     });
   }
 
