@@ -347,13 +347,19 @@
           • PRODUZIONE su hosting PHP/WordPress: cambia action in "submit.php"
             (CV in allegato + nessun servizio esterno). Vedi README.
         -->
+        <!--
+          RICEVENTE TEMPORANEO: l'email principale è quella attivabile subito
+          (agenzia). info@fmservicegroup.it è in copia (_cc). Quando il cliente
+          attiverà il proprio form, riportare l'action su info@fmservicegroup.it.
+        -->
         <form class="apply-form reveal" id="applyForm" method="POST"
-              action="https://formsubmit.co/info@fmservicegroup.it"
+              action="https://formsubmit.co/antoniobaccaro.freeze@gmail.com"
               enctype="multipart/form-data" novalidate>
           <!-- campo nascosto popolato dalle card "Posizioni aperte" / tracking -->
           <input type="hidden" name="source" id="formSource" value="landing-recruiting" />
           <!-- opzioni FormSubmit (endpoint standard: inoltra anche il CV in allegato) -->
           <input type="hidden" name="_subject" value="Nuova candidatura — FM Service Group" />
+          <input type="hidden" name="_cc" value="info@fmservicegroup.it" />
           <input type="hidden" name="_template" value="table" />
           <input type="hidden" name="_captcha" value="false" />
           <!-- pagina di ringraziamento dopo l'invio (anche per tracciare la conversione) -->
