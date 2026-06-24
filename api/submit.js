@@ -39,7 +39,9 @@ module.exports = async (req, res) => {
     const form = formidable({ maxFileSize: MAX_CV_MB * 1024 * 1024, keepExtensions: true, multiples: false });
     [fields, files] = await form.parse(req);
   } catch (e) {
-    res.status(400).send('Errore nei dati inviati (file troppo grande? max ' + MAX_CV_MB + 'MB).');
+    res.status(400).send('PARSE_ERR: ' + (e && e.message ? e.message : String(e)) +
+      ' | hasBody=' + (typeof req.body) + ' | ct=' + (req.headers['content-type'] || '') +
+      ' | cl=' + (req.headers['content-length'] || ''));
     return;
   }
 
