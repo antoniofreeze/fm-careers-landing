@@ -356,7 +356,7 @@
               action="https://formsubmit.co/antoniobaccaro.freeze@gmail.com"
               enctype="multipart/form-data" novalidate>
           <!-- campo nascosto popolato dalle card "Posizioni aperte" / tracking -->
-          <input type="hidden" name="source" id="formSource" value="landing-recruiting" />
+          <input type="hidden" name="Provenienza" id="formSource" value="Landing recruiting" />
           <!-- opzioni FormSubmit (endpoint standard: inoltra anche il CV in allegato) -->
           <input type="hidden" name="_subject" value="Nuova candidatura — FM Service Group" />
           <input type="hidden" name="_cc" value="info@fmservicegroup.it" />
@@ -364,39 +364,39 @@
           <input type="hidden" name="_captcha" value="false" />
           <!-- pagina di ringraziamento dopo l'invio (anche per tracciare la conversione) -->
           <input type="hidden" name="_next" value="https://fmservicegroup-recruiting.it/grazie.html" />
-          <!-- honeypot anti-spam: nascosto agli utenti, compilato solo dai bot -->
-          <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" />
+          <!-- honeypot anti-spam (nascosto agli utenti, escluso dalle email) -->
+          <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" />
 
           <div class="form-row">
             <div class="form-field">
               <label for="nome">Nome <span class="req">*</span></label>
-              <input type="text" id="nome" name="nome" autocomplete="given-name" required />
+              <input type="text" id="nome" name="Nome" autocomplete="given-name" required />
             </div>
             <div class="form-field">
               <label for="cognome">Cognome <span class="req">*</span></label>
-              <input type="text" id="cognome" name="cognome" autocomplete="family-name" required />
+              <input type="text" id="cognome" name="Cognome" autocomplete="family-name" required />
             </div>
           </div>
 
           <div class="form-row">
             <div class="form-field">
               <label for="telefono">Telefono <span class="req">*</span></label>
-              <input type="tel" id="telefono" name="telefono" autocomplete="tel" inputmode="tel" required />
+              <input type="tel" id="telefono" name="Telefono" autocomplete="tel" inputmode="tel" required />
             </div>
             <div class="form-field">
               <label for="email">Email <span class="req">*</span></label>
-              <input type="email" id="email" name="email" autocomplete="email" inputmode="email" required />
+              <input type="email" id="email" name="Email" autocomplete="email" inputmode="email" required />
             </div>
           </div>
 
           <div class="form-row">
             <div class="form-field">
               <label for="provincia">Provincia <span class="req">*</span></label>
-              <input type="text" id="provincia" name="provincia" placeholder="Es. Siracusa" required />
+              <input type="text" id="provincia" name="Provincia" placeholder="Es. Siracusa" required />
             </div>
             <div class="form-field">
               <label for="posizione">Posizione di interesse <span class="req">*</span></label>
-              <select id="posizione" name="posizione" required>
+              <select id="posizione" name="Posizione di interesse" required>
                 <option value="" disabled selected>Seleziona una posizione…</option>
                 <option>Personale Eventi</option>
                 <option>Addetto Controllo Accessi</option>
@@ -412,24 +412,24 @@
           <div class="form-row">
             <div class="form-field">
               <label for="cv">Curriculum vitae <span class="req">*</span></label>
-              <input type="file" id="cv" name="cv" accept=".pdf,.doc,.docx" required />
+              <input type="file" id="cv" name="Curriculum" accept=".pdf,.doc,.docx" required />
               <small class="field-hint">Formati accettati: PDF, DOC, DOCX</small>
             </div>
             <div class="form-field">
               <label for="linkedin">URL LinkedIn <span class="opt">(opzionale)</span></label>
-              <input type="url" id="linkedin" name="linkedin" placeholder="https://linkedin.com/in/..." />
+              <input type="url" id="linkedin" name="LinkedIn" placeholder="https://linkedin.com/in/..." />
             </div>
           </div>
 
           <div class="form-field">
             <label for="esperienza">Esperienza precedente <span class="opt">(opzionale)</span></label>
-            <textarea id="esperienza" name="esperienza" rows="3" placeholder="Raccontaci brevemente la tua esperienza nel settore."></textarea>
+            <textarea id="esperienza" name="Esperienza precedente" rows="3" placeholder="Raccontaci brevemente la tua esperienza nel settore."></textarea>
           </div>
 
           <div class="form-row">
             <div class="form-field">
               <label for="disponibilita">Disponibilità immediata <span class="opt">(opzionale)</span></label>
-              <select id="disponibilita" name="disponibilita">
+              <select id="disponibilita" name="Disponibilità">
                 <option value="" disabled selected>Seleziona…</option>
                 <option>Sì, disponibile da subito</option>
                 <option>Disponibile entro 15 giorni</option>
@@ -439,12 +439,12 @@
             </div>
             <div class="form-field">
               <label for="attestati">Hai attestati / certificazioni? <span class="opt">(opzionale)</span></label>
-              <input type="text" id="attestati" name="attestati" placeholder="Es. attestato sicurezza, primo soccorso…" />
+              <input type="text" id="attestati" name="Attestati / Certificazioni" placeholder="Es. attestato sicurezza, primo soccorso…" />
             </div>
           </div>
 
           <label class="checkbox-field">
-            <input type="checkbox" id="privacy" name="privacy" required />
+            <input type="checkbox" id="privacy" name="Privacy" value="Sì, accettata" required />
             <span>Ho letto e accetto l’<a href="https://www.fmservicegroup.it" target="_blank" rel="noopener">informativa sulla privacy</a> e autorizzo il trattamento dei miei dati personali. <span class="req">*</span></span>
           </label>
 
