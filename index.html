@@ -348,23 +348,23 @@
             (CV in allegato + nessun servizio esterno). Vedi README.
         -->
         <!--
-          INVIO via Web3Forms (endpoint standard → inoltra il CV in ALLEGATO).
-          Le candidature arrivano alla mail collegata alla access_key
-          (ora: antoniobaccaro.freeze@gmail.com). Per spostarle/aggiungere
-          info@fmservicegroup.it: dashboard Web3Forms (Settings → Email).
+          INVIO via FormSubmit verso la Gmail attivata dall'agenzia.
+          NB: i servizi gratuiti (FormSubmit/Web3Forms free) NON allegano i file
+          → il CV NON viene inoltrato. Per ricevere il CV in allegato serve un
+          backend dedicato (vedi README / nota in chat).
         -->
         <form class="apply-form reveal" id="applyForm" method="POST"
-              action="https://api.web3forms.com/submit"
+              action="https://formsubmit.co/antoniobaccaro.freeze@gmail.com"
               enctype="multipart/form-data" novalidate>
-          <!-- configurazione Web3Forms -->
-          <input type="hidden" name="access_key" value="94241b80-6479-4637-9b59-edb2d80f8f34" />
-          <input type="hidden" name="subject" value="Nuova candidatura — FM Service Group" />
-          <input type="hidden" name="from_name" value="Candidature FM Service Group" />
-          <input type="hidden" name="redirect" value="https://fmservicegroup-recruiting.it/grazie.html" />
+          <input type="hidden" name="_subject" value="Nuova candidatura — FM Service Group" />
+          <input type="hidden" name="_cc" value="info@fmservicegroup.it" />
+          <input type="hidden" name="_template" value="table" />
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_next" value="https://fmservicegroup-recruiting.it/grazie.html" />
           <!-- campo nascosto popolato dalle card "Posizioni aperte" / tracking -->
           <input type="hidden" name="Provenienza" id="formSource" value="Landing recruiting" />
-          <!-- honeypot anti-spam Web3Forms (nascosto agli utenti) -->
-          <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none" />
+          <!-- honeypot anti-spam (escluso dalle email) -->
+          <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" />
 
           <div class="form-row">
             <div class="form-field">
