@@ -1,0 +1,9 @@
+{
+  "name": "fm-careers-landing",
+  "private": true,
+  "description": "Backend serverless per l'invio candidature con CV in allegato (Resend)",
+  "dependencies": {
+    "resend": "^4.0.0",
+    "formidable": "^3.5.1"
+  }
+}

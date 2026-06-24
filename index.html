@@ -348,19 +348,12 @@
             (CV in allegato + nessun servizio esterno). Vedi README.
         -->
         <!--
-          INVIO via FormSubmit verso la Gmail attivata dall'agenzia.
-          NB: i servizi gratuiti (FormSubmit/Web3Forms free) NON allegano i file
-          → il CV NON viene inoltrato. Per ricevere il CV in allegato serve un
-          backend dedicato (vedi README / nota in chat).
+          INVIO via backend serverless /api/submit (Resend):
+          email in italiano + CV IN ALLEGATO. Config in api/submit.js.
         -->
         <form class="apply-form reveal" id="applyForm" method="POST"
-              action="https://formsubmit.co/antoniobaccaro.freeze@gmail.com"
+              action="/api/submit"
               enctype="multipart/form-data" novalidate>
-          <input type="hidden" name="_subject" value="Nuova candidatura — FM Service Group" />
-          <input type="hidden" name="_cc" value="info@fmservicegroup.it" />
-          <input type="hidden" name="_template" value="table" />
-          <input type="hidden" name="_captcha" value="false" />
-          <input type="hidden" name="_next" value="https://fmservicegroup-recruiting.it/grazie.html" />
           <!-- campo nascosto popolato dalle card "Posizioni aperte" / tracking -->
           <input type="hidden" name="Provenienza" id="formSource" value="Landing recruiting" />
           <!-- honeypot anti-spam (escluso dalle email) -->
