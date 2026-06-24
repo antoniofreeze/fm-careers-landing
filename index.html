@@ -348,24 +348,23 @@
             (CV in allegato + nessun servizio esterno). Vedi README.
         -->
         <!--
-          RICEVENTE TEMPORANEO: l'email principale è quella attivabile subito
-          (agenzia). info@fmservicegroup.it è in copia (_cc). Quando il cliente
-          attiverà il proprio form, riportare l'action su info@fmservicegroup.it.
+          INVIO via Web3Forms (endpoint standard → inoltra il CV in ALLEGATO).
+          Le candidature arrivano alla mail collegata alla access_key
+          (ora: antoniobaccaro.freeze@gmail.com). Per spostarle/aggiungere
+          info@fmservicegroup.it: dashboard Web3Forms (Settings → Email).
         -->
         <form class="apply-form reveal" id="applyForm" method="POST"
-              action="https://formsubmit.co/antoniobaccaro.freeze@gmail.com"
+              action="https://api.web3forms.com/submit"
               enctype="multipart/form-data" novalidate>
+          <!-- configurazione Web3Forms -->
+          <input type="hidden" name="access_key" value="94241b80-6479-4637-9b59-edb2d80f8f34" />
+          <input type="hidden" name="subject" value="Nuova candidatura — FM Service Group" />
+          <input type="hidden" name="from_name" value="Candidature FM Service Group" />
+          <input type="hidden" name="redirect" value="https://fmservicegroup-recruiting.it/grazie.html" />
           <!-- campo nascosto popolato dalle card "Posizioni aperte" / tracking -->
           <input type="hidden" name="Provenienza" id="formSource" value="Landing recruiting" />
-          <!-- opzioni FormSubmit (endpoint standard: inoltra anche il CV in allegato) -->
-          <input type="hidden" name="_subject" value="Nuova candidatura — FM Service Group" />
-          <input type="hidden" name="_cc" value="info@fmservicegroup.it" />
-          <input type="hidden" name="_template" value="table" />
-          <input type="hidden" name="_captcha" value="false" />
-          <!-- pagina di ringraziamento dopo l'invio (anche per tracciare la conversione) -->
-          <input type="hidden" name="_next" value="https://fmservicegroup-recruiting.it/grazie.html" />
-          <!-- honeypot anti-spam (nascosto agli utenti, escluso dalle email) -->
-          <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" />
+          <!-- honeypot anti-spam Web3Forms (nascosto agli utenti) -->
+          <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none" />
 
           <div class="form-row">
             <div class="form-field">
