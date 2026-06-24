@@ -13,9 +13,9 @@ const { Resend } = require('resend');
 const { formidable } = require('formidable');
 const fs = require('fs');
 
-const TO_EMAIL   = process.env.TO_EMAIL   || 'antoniobaccaro.freeze@gmail.com';
-const FROM_EMAIL = process.env.FROM_EMAIL || 'Candidature FM <onboarding@resend.dev>';
-const CC_EMAIL   = process.env.CC_EMAIL   || ''; // attivabile solo con dominio verificato
+const TO_EMAIL   = process.env.TO_EMAIL   || 'info@fmservicegroup.it';
+const FROM_EMAIL = process.env.FROM_EMAIL || 'Candidature FM Service Group <candidature@fmservicegroup-recruiting.it>';
+const CC_EMAIL   = process.env.CC_EMAIL   || 'antoniobaccaro.freeze@gmail.com'; // copia all'agenzia
 const MAX_CV_MB  = 8;
 
 function esc(s) {
